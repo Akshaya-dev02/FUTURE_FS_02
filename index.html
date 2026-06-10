@@ -55,7 +55,7 @@
 
         async function fetchLeads() {
           try {
-            const response = await axios.get('https://YOUR-RENDER-URL.onrender.com/api/leads');
+            const response = await axios.get('https://crm-backend-nzay.onrender.com/api/leads');
             setLeads(response.data);
           } catch (error) {
             console.error(error);
@@ -66,7 +66,7 @@
         async function submitLead(event) {
           event.preventDefault();
           try {
-            const { data } = await axios.post('/api/leads', form);
+            const { data } = await axios.post('https://crm-backend-nzay.onrender.com/api/leads', form);
             setLeads([data, ...leads]);
             setForm(EMPTY_LEAD);
             setMessage('Lead added successfully!');
@@ -79,7 +79,7 @@
         async function updateLead(id, update) {
           try {
             const leadId = id && id._id ? id._id : id;
-            const { data } = await axios.put(`/api/leads/${leadId}`, update);
+            const { data } = await axios.put(`https://crm-backend-nzay.onrender.com/api/leads/${leadId}`, update);
             setLeads(currentLeads =>
               currentLeads.map(lead =>
                 lead._id === leadId || lead.id === leadId ? data : lead
@@ -98,7 +98,7 @@
             if (!leadId) {
               throw new Error('Unable to resolve lead id');
             }
-            await axios.delete(`/api/leads/${leadId}`);
+            await axios.delete(`https://crm-backend-nzay.onrender.com/api/leads/${leadId}`);
             setLeads(currentLeads =>
               currentLeads.filter(lead => lead._id !== leadId && lead.id !== leadId)
             );
@@ -111,7 +111,7 @@
 
         async function attemptAuth(route, payload) {
           try {
-            const { data } = await axios.post(`/api/${route}`, payload);
+            const { data } = await axios.post(`https://crm-backend-nzay.onrender.com/api/${route}`, payload);
             const authUser = data.user || {};
             const storedUser = {
               name: authUser.name || payload.name || '',
@@ -281,7 +281,7 @@
                       return;
                     }
                     try {
-                      await axios.post('/api/change-password', {
+                      await axios.post('https://crm-backend-nzay.onrender.com/api/change-password', {
                         email: user.email,
                         currentPassword: passwordForm.currentPassword,
                         newPassword: passwordForm.newPassword,
