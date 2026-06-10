@@ -6,8 +6,7 @@
     <title>CRM Lead Manager</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" crossorigin href="/FUTURE_FS_02/assets/index-BZ_Wh_iB.css">
   </head>
   <body>
@@ -112,8 +111,7 @@
 
         async function attemptAuth(route, payload) {
           try {
-            const API = 'https://crm-backend-nzay.onrender.com';
-            const { data } = await axios.post(`${API}/api/${route}`, payload);
+            const { data } = await axios.post(`https://crm-backend-nzay.onrender.com/api/${route}`, payload);
             const authUser = data.user || {};
             const storedUser = {
               name: authUser.name || payload.name || '',
